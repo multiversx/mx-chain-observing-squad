@@ -1,0 +1,19 @@
+# OBSERVER1_FOLDER=~/ToTheNetwork/PlaygroundDocker/Observer1
+# docker run --mount type=bind,source=${OBSERVER1_FOLDER}/data,destination=/data --mount type=bind,source=${OBSERVER1_FOLDER}/logs,destination=/go/elrond-go/cmd/node/logs --publish 9090:8080 --publish 9091:37373 --name dockerObserver1 elrondnetwork/elrond-go-node \
+# -destination-shard-as-observer=1 -start-in-epoch \
+#  -log-save -log-level=*:DEBUG -log-logger-name \
+#  -display-name="TheObserver1FromDocker" \
+#  -rest-api-interface="localhost:8080" \
+#  --genesis-file="/data/config/genesis.json" \
+#  --smart-contracts-file="/data/config/genesisSmartContracts.json" \
+#  --nodes-setup-file="/data/config/nodesSetup.json" \
+#  --config="/data/config/config.toml" \
+#  --config-api="/data/config/api.toml" \
+#  --config-economics="/data/config/economics.toml" \
+#  --config-systemSmartContracts="/data/config/systemSmartContractsConfig.toml" \
+#  --config-preferences="/data/config/prefs.toml" \
+#  --config-ratings="/data/config/ratings.toml" \
+#  --gas-costs-config="/data/config/gasSchedule.toml" \
+#  --config-external="/data/config/external.toml" \
+#  --p2p-config="/data/config/p2p.toml"
+# ...
