@@ -21,7 +21,7 @@
 version: '3'
 services:
  observer-0:
-   image: elrond-node-obs
+   image: elrond-node-obs:0.1
    ports:
      - "8080:8080"
      - "10000:10000"
@@ -29,12 +29,13 @@ services:
      
    volumes:
      - 
+   entrypoint: /ENTRYPOINTS/entrypoint0.sh
    networks:
      static-network:
        ipv4_address: 172.16.0.6
 
  observer-1:
-   image: elrond-node-obs
+   image: elrond-node-obs:0.1
    ports:
      - "8080:8080"
      - "10000:10000"
@@ -42,12 +43,13 @@ services:
      
    volumes:
      - 
+   entrypoint: /ENTRYPOINTS/entrypoint1.sh
    networks:
      static-network:
        ipv4_address: 172.16.0.5
 
  observer-2:
-   image: elrond-node-obs
+   image: elrond-node-obs:0.1
    ports:
      - "8080:8080"
      - "10000:10000"
@@ -55,12 +57,13 @@ services:
      
    volumes:
      - 
+   entrypoint: /ENTRYPOINTS/entrypoint2.sh
    networks:
      static-network:
        ipv4_address: 172.16.0.4
 
  observer-meta:
-   image: elrond-node-obs
+   image: elrond-node-obs:0.1
    ports:
      - "8080:8080"
      - "10000:10000"
@@ -68,6 +71,7 @@ services:
      
    volumes:
      - 
+   entrypoint: /ENTRYPOINTS/entrypointmeta.sh
    networks:
      static-network:
        ipv4_address: 172.16.0.3
