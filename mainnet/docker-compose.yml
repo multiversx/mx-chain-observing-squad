@@ -17,3 +17,75 @@
 #  --config-external="/data/config/external.toml" \
 #  --p2p-config="/data/config/p2p.toml"
 # ...
+
+version: '3'
+services:
+ observer-0:
+   image: elrond-node-obs
+   ports:
+     - "8080:8080"
+     - "10000:10000"
+   environment:
+     
+   volumes:
+     - 
+   networks:
+     static-network:
+       ipv4_address: 172.16.0.6
+
+ observer-1:
+   image: elrond-node-obs
+   ports:
+     - "8080:8080"
+     - "10000:10000"
+   environment:
+     
+   volumes:
+     - 
+   networks:
+     static-network:
+       ipv4_address: 172.16.0.5
+
+ observer-2:
+   image: elrond-node-obs
+   ports:
+     - "8080:8080"
+     - "10000:10000"
+   environment:
+     
+   volumes:
+     - 
+   networks:
+     static-network:
+       ipv4_address: 172.16.0.4
+
+ observer-meta:
+   image: elrond-node-obs
+   ports:
+     - "8080:8080"
+     - "10000:10000"
+   environment:
+     
+   volumes:
+     - 
+   networks:
+     static-network:
+       ipv4_address: 172.16.0.3
+
+ proxy:
+   image: elrond-proxy
+   ports:
+     - "8079:8079"
+   environment:
+     
+   volumes:
+     - 
+   networks:
+     static-network:
+       ipv4_address: 172.16.0.2
+ 
+networks:
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.16.0.0/24
