@@ -40,12 +40,12 @@
 
   [[Observers]]
      ShardId = 1
-     Address = "http://172.16.0.5:8081"
+     Address = "http://172.16.0.5:8080"
 
   [[Observers]]
      ShardId = 2
-     Address = "http://172.16.0.4:8082"
+     Address = "http://172.16.0.4:8080"
 
   [[Observers]]
      ShardId = 4294967295
-     Address = "http://172.16.0.3:8083"
+     Address = "http://172.16.0.3:8080"
