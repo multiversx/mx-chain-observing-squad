@@ -19,7 +19,9 @@ docker pull elrondnetwork/elrond-proxy:v1.1.1
 
 ## How to run the images
 
-In a folder of your choice (e.g. `MyObservingSquad`), create the structure as below, and copy the observer PEM files in the `node-n/config` subfolders:
+**Prepare folder structure:**
+
+In a folder of your choice (e.g. `MyObservingSquad`), create the following structure, and copy the observer PEM files in the `node-n/config` subfolders:
 
 ```
 .
@@ -54,17 +56,12 @@ In a folder of your choice (e.g. `MyObservingSquad`), create the structure as be
 docker network create --subnet=172.16.0.0/24 elrond-squad
 ```
 
-**Export** the following shell variables (configure them as desired):
-
-```
-export DISPLAY_NAME_PREFIX="MyObservingSquad"
-export OBSERVER_DIR_PREFIX=~/MyObservingSquad/node
-```
-
 **Shard 0:**
 
 ```
 export SHARD=0
+export DISPLAY_NAME="MyObservingSquad-0"
+export OBSERVER_DIR=~/MyObservingSquad/node-0
 export P2P_PORT=10000
 export IP=172.16.0.6
 ./run-observer.sh
@@ -74,6 +71,8 @@ export IP=172.16.0.6
 
 ```
 export SHARD=1
+export DISPLAY_NAME="MyObservingSquad-1"
+export OBSERVER_DIR=~/MyObservingSquad/node-1
 export P2P_PORT=10001
 export IP=172.16.0.5
 ./run-observer.sh
@@ -83,6 +82,8 @@ export IP=172.16.0.5
 
 ```
 export SHARD=2
+export DISPLAY_NAME="MyObservingSquad-2"
+export OBSERVER_DIR=~/MyObservingSquad/node-2
 export P2P_PORT=10002
 export IP=172.16.0.4
 ./run-observer.sh
@@ -92,6 +93,8 @@ export IP=172.16.0.4
 
 ```
 export SHARD=metachain
+export DISPLAY_NAME="MyObservingSquad-metachain"
+export OBSERVER_DIR=~/MyObservingSquad/node-metachain
 export P2P_PORT=10003
 export IP=172.16.0.3
 ./run-observer.sh
@@ -102,4 +105,14 @@ export IP=172.16.0.3
 ```
 export IP=172.16.0.2
 ./run-proxy.sh
+```
+
+## Verify the running containers:
+
+```
+curl http://172.16.0.2:8079/network/config | jq
+curl http://172.16.0.2:8079/network/status/0 | jq
+curl http://172.16.0.2:8079/network/status/1 | jq
+curl http://172.16.0.2:8079/network/status/2 | jq
+curl http://172.16.0.2:8079/network/status/4294967295 | jq
 ```
