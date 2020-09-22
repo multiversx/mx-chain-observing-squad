@@ -3,7 +3,7 @@ FROM golang:1.14.9 as builder
 RUN mkdir /root/.ssh && chmod 700 /root/.ssh
 	
 # Clone the elrond-proxy-go repo 
-RUN git clone -b master https://github.com/ElrondNetwork/elrond-proxy-go.git
+RUN git clone -b master https://github.com/ElrondNetwork/elrond-proxy-go.git && cd elrond-proxy-go && git checkout --force tags/v1.1.1
 
 # Proxy
 WORKDIR /go/elrond-proxy-go/cmd/proxy
@@ -16,7 +16,7 @@ FROM ubuntu:18.04
 
 COPY --from=builder /go/elrond-proxy-go/cmd/proxy /go/elrond-proxy-go/cmd/proxy
 #Copy the proxy config.toml file
-COPY CONFIGS/config.toml /go/elrond-proxy-go/cmd/proxy/config/
+COPY configs/config.toml /go/elrond-proxy-go/cmd/proxy/config/
 
 WORKDIR /go/elrond-proxy-go/cmd/proxy/
 EXPOSE 8079
