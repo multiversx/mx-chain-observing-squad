@@ -6,8 +6,9 @@ Docker images and scripts for setting up an Elrond Observing Squad
 Skip this if you prefer to pull from [docker hub](https://hub.docker.com/u/elrondnetwork) instead.
 
 ```
-docker image build . -t elrondnetwork/elrond-node-obs:e1.1.0.1 -f ./elrond-node-obs 
-docker image build . -t elrondnetwork/elrond-proxy:v1.1.1 -f ./elrond-proxy 
+docker image build . -t elrondnetwork/elrond-node-obs:e1.1.0.1 -f ./mainnet/elrond-node-obs 
+docker image build . -t elrondnetwork/elrond-proxy:v1.1.1 -f ./mainnet/elrond-proxy 
+docker image build . -t elrondnetwork/elrond-go-keygenerator:latest -f ./utils/elrond-go-keygenerator 
 ```
 
 ## How to pull the images from Docker Hub
@@ -15,9 +16,32 @@ docker image build . -t elrondnetwork/elrond-proxy:v1.1.1 -f ./elrond-proxy
 ```
 docker pull elrondnetwork/elrond-node-obs:e1.1.0.1
 docker pull elrondnetwork/elrond-proxy:v1.1.1
+docker pull elrondnetwork/elrond-go-keygenerator:latest
 ```
 
 ## How to run the images
+
+**Generate PEM files**
+
+First, generate 4 PEM files, one for each Observer by running the keygenerator 4 times:
+
+```
+export KEYS_FOLDER=~/keys
+docker run --rm --mount type=bind,source=${KEYS_FOLDER},destination=/keys --workdir /keys elrondnetwork/elrond-go-keygenerator:latest
+```
+
+After running the command 4 times, rename the resulted files to:
+
+- `observerKey_0.pem`
+- `observerKey_1.pem`
+- `observerKey_2.pem`
+- `observerKey_metachain.pem`
+
+**Note:** the files will be owned by the `root` user. In order to `chown` them, do as follows:
+
+```
+sudo chown $(whoami) *
+```
 
 **Prepare folder structure:**
 
@@ -56,7 +80,15 @@ In a folder of your choice (e.g. `MyObservingSquad`), create the following struc
 docker network create --subnet=172.16.0.0/24 elrond-squad
 ```
 
-**Shard 0:**
+**Clone repository**
+
+Clone this repository in order to get a copy of the files `run-observer.sh` and `run-proxy.sh`, which are needed below.
+
+```
+git clone https://github.com/ElrondNetwork/observing-squad.git && cd observing-squad
+```
+
+**Start Observer of Shard 0:**
 
 ```
 export SHARD=0
@@ -67,7 +99,7 @@ export IP=172.16.0.6
 ./run-observer.sh
 ```
 
-**Shard 1:**
+**Start Observer of Shard 1:**
 
 ```
 export SHARD=1
@@ -78,7 +110,7 @@ export IP=172.16.0.5
 ./run-observer.sh
 ```
 
-**Shard 2:**
+**Start Observer of Shard 2:**
 
 ```
 export SHARD=2
@@ -89,7 +121,7 @@ export IP=172.16.0.4
 ./run-observer.sh
 ```
 
-**Metachain:**
+**Start Observer of Metachain:**
 
 ```
 export SHARD=metachain
@@ -100,7 +132,7 @@ export IP=172.16.0.3
 ./run-observer.sh
 ```
 
-**Proxy:**
+**Start Proxy:**
 
 ```
 export IP=172.16.0.2
@@ -108,6 +140,8 @@ export IP=172.16.0.2
 ```
 
 ## Verify the running containers:
+
+Do a smoke test by running some queries against the Elrond Proxy.
 
 ```
 curl http://172.16.0.2:8079/network/config | jq
