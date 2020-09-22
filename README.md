@@ -48,10 +48,13 @@ In a folder of your choice (e.g. `MyObservingSquad`), create the structure as be
     └── config
 ```
 
-First, create a docker network:
+**Create a docker network:**
+
 ```
 docker network create --subnet=172.16.0.0/24 elrond-squad
 ```
+
+**Export** the following shell variables (configure them as desired):
 
 ```
 export DISPLAY_NAME_PREFIX="MyObservingSquad"
@@ -85,8 +88,8 @@ export IP=172.16.0.4
 ./run-observer.sh
 ```
 
-**Metachain:
-**
+**Metachain:**
+
 ```
 export SHARD=metachain
 export P2P_PORT=10003
