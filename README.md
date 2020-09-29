@@ -5,20 +5,20 @@ Docker images and scripts for setting up an Elrond Observing Squad
 
 Skip this if you prefer to pull from [docker hub](https://hub.docker.com/u/elrondnetwork) instead.
 
-```
+```bash
 cd mainnet
-docker image build . -t elrondnetwork/elrond-node-obs:e1.1.0.1 -f ./elrond-node-obs 
+docker image build . -t elrondnetwork/elrond-node-obs:e1.1.0.1 -f ./elrond-node-obs
 docker image build . -t elrondnetwork/elrond-proxy:v1.1.1 -f ./elrond-proxy
 ```
 
-```
+```bash
 cd utils
-docker image build . -t elrondnetwork/elrond-go-keygenerator:latest -f ./elrond-go-keygenerator 
+docker image build . -t elrondnetwork/elrond-go-keygenerator:latest -f ./elrond-go-keygenerator
 ```
 
 ## How to pull the images from Docker Hub
 
-```
+```bash
 docker pull elrondnetwork/elrond-node-obs:e1.1.0.1
 docker pull elrondnetwork/elrond-proxy:v1.1.1
 docker pull elrondnetwork/elrond-go-keygenerator:latest
@@ -30,7 +30,7 @@ docker pull elrondnetwork/elrond-go-keygenerator:latest
 
 First, generate 4 PEM files, one for each Observer by running the keygenerator 4 times:
 
-```
+```bash
 export KEYS_FOLDER=~/keys
 docker run --rm --mount type=bind,source=${KEYS_FOLDER},destination=/keys --workdir /keys elrondnetwork/elrond-go-keygenerator:latest
 ```
@@ -44,7 +44,7 @@ After running the command 4 times, rename the resulted files to:
 
 **Note:** the files will be owned by the `root` user. In order to `chown` them, do as follows:
 
-```
+```bash
 sudo chown $(whoami) *
 ```
 
@@ -81,7 +81,7 @@ In a folder of your choice (e.g. `MyObservingSquad`), create the following struc
 
 **Create a docker network:**
 
-```
+```bash
 docker network create --subnet=10.0.0.0/24 elrond-squad
 ```
 
@@ -89,13 +89,13 @@ docker network create --subnet=10.0.0.0/24 elrond-squad
 
 Clone this repository in order to get a copy of the files `run-observer.sh` and `run-proxy.sh`, which are needed below.
 
-```
+```bash
 git clone https://github.com/ElrondNetwork/observing-squad.git && cd observing-squad
 ```
 
 **Start Observer of Shard 0:**
 
-```
+```bash
 export SHARD=0
 export DISPLAY_NAME="MyObservingSquad-0"
 export OBSERVER_DIR=~/MyObservingSquad/node-0
@@ -106,7 +106,7 @@ export IP=10.0.0.6
 
 **Start Observer of Shard 1:**
 
-```
+```bash
 export SHARD=1
 export DISPLAY_NAME="MyObservingSquad-1"
 export OBSERVER_DIR=~/MyObservingSquad/node-1
@@ -117,7 +117,7 @@ export IP=10.0.0.5
 
 **Start Observer of Shard 2:**
 
-```
+```bash
 export SHARD=2
 export DISPLAY_NAME="MyObservingSquad-2"
 export OBSERVER_DIR=~/MyObservingSquad/node-2
@@ -128,7 +128,7 @@ export IP=10.0.0.4
 
 **Start Observer of Metachain:**
 
-```
+```bash
 export SHARD=metachain
 export DISPLAY_NAME="MyObservingSquad-metachain"
 export OBSERVER_DIR=~/MyObservingSquad/node-metachain
@@ -139,7 +139,7 @@ export IP=10.0.0.3
 
 **Start Proxy:**
 
-```
+```bash
 export IP=10.0.0.2
 ./run-proxy.sh
 ```
@@ -148,7 +148,7 @@ export IP=10.0.0.2
 
 Do a smoke test by running some queries against the Elrond Proxy.
 
-```
+```bash
 curl http://10.0.0.2:8079/network/config | jq
 curl http://10.0.0.2:8079/network/status/0 | jq
 curl http://10.0.0.2:8079/network/status/1 | jq
