@@ -1,95 +1,93 @@
-# OBSERVER1_FOLDER=~/ToTheNetwork/PlaygroundDocker/Observer1
-# docker run --mount type=bind,source=${OBSERVER1_FOLDER}/data,destination=/data --mount type=bind,source=${OBSERVER1_FOLDER}/logs,destination=/go/elrond-go/cmd/node/logs --publish 9090:8080 --publish 9091:37373 --name dockerObserver1 elrondnetwork/elrond-go-node \
-# -destination-shard-as-observer=1 -start-in-epoch \
-#  -log-save -log-level=*:DEBUG -log-logger-name \
-#  -display-name="TheObserver1FromDocker" \
-#  -rest-api-interface="localhost:8080" \
-#  --genesis-file="/data/config/genesis.json" \
-#  --smart-contracts-file="/data/config/genesisSmartContracts.json" \
-#  --nodes-setup-file="/data/config/nodesSetup.json" \
-#  --config="/data/config/config.toml" \
-#  --config-api="/data/config/api.toml" \
-#  --config-economics="/data/config/economics.toml" \
-#  --config-systemSmartContracts="/data/config/systemSmartContractsConfig.toml" \
-#  --config-preferences="/data/config/prefs.toml" \
-#  --config-ratings="/data/config/ratings.toml" \
-#  --gas-costs-config="/data/config/gasSchedule.toml" \
-#  --config-external="/data/config/external.toml" \
-#  --p2p-config="/data/config/p2p.toml"
-# ...
+version: '3.8'
 
-version: '3'
 services:
  observer-0:
-   image: elrond-node-obs:0.1
+   image: elrondnetwork/elrond-node-obs:e1.1.0.1
    ports:
      - "8080:8080"
-     - "10000:10000"
+     - "10000:37373"
    environment:
-     
+     - SHARD=0
+     - DISPLAY_NAME="MyObservingSquad-0"
+     - OBSERVER_DIR=~/MyObservingSquad/node-0
+     - IP=10.0.0.6
    volumes:
-     - 
-   entrypoint: /ENTRYPOINTS/entrypoint0.sh
+     - ~/MyObservingSquad/node-0/db:/go/elrond-go/cmd/node/db
+     - ~/MyObservingSquad/node-0/logs:/go/elrond-go/cmd/node/logs
+     - ~/MyObservingSquad/node-0/config:/config
+   command: --destination-shard-as-observer=0 --validator-key-pem-file=/config/observerKey_0.pem --display-name="MyObservingSquad-0"
    networks:
-     static-network:
-       ipv4_address: 172.16.0.6
+     elrond-squad:
+       ipv4_address: 10.0.0.6
 
  observer-1:
-   image: elrond-node-obs:0.1
+   image: elrondnetwork/elrond-node-obs:e1.1.0.1
    ports:
-     - "8080:8080"
-     - "10000:10000"
+     - "8081:8080"
+     - "10001:37373"
    environment:
-     
+     - SHARD=1
+     - DISPLAY_NAME="MyObservingSquad-1"
+     - OBSERVER_DIR=~/MyObservingSquad/node-1
+     - IP=10.0.0.5     
    volumes:
-     - 
-   entrypoint: /ENTRYPOINTS/entrypoint1.sh
+     - ~/MyObservingSquad/node-1/db:/go/elrond-go/cmd/node/db
+     - ~/MyObservingSquad/node-1/logs:/go/elrond-go/cmd/node/logs
+     - ~/MyObservingSquad/node-1/config:/config
+   command: --destination-shard-as-observer=1 --validator-key-pem-file=/config/observerKey_1.pem --display-name="MyObservingSquad-1"
    networks:
-     static-network:
-       ipv4_address: 172.16.0.5
-
+     elrond-squad:
+       ipv4_address: 10.0.0.5
  observer-2:
-   image: elrond-node-obs:0.1
+   image: elrondnetwork/elrond-node-obs:e1.1.0.1
    ports:
-     - "8080:8080"
-     - "10000:10000"
+    - "8082:8080" 
+    - "10002:37373"
    environment:
-     
+     - SHARD=2
+     - DISPLAY_NAME="MyObservingSquad-2"
+     - OBSERVER_DIR=~/MyObservingSquad/node-2
+     - IP=10.0.0.4
    volumes:
-     - 
-   entrypoint: /ENTRYPOINTS/entrypoint2.sh
+     - ~/MyObservingSquad/node-2/db:/go/elrond-go/cmd/node/db
+     - ~/MyObservingSquad/node-2/logs:/go/elrond-go/cmd/node/logs
+     - ~/MyObservingSquad/node-2/config:/config
+   command: --destination-shard-as-observer=2 --validator-key-pem-file=/config/observerKey_2.pem --display-name="MyObservingSquad-2"
    networks:
-     static-network:
-       ipv4_address: 172.16.0.4
+     elrond-squad:
+       ipv4_address: 10.0.0.4
 
  observer-meta:
-   image: elrond-node-obs:0.1
+   image: elrondnetwork/elrond-node-obs:e1.1.0.1
    ports:
-     - "8080:8080"
-     - "10000:10000"
+     - "8083:8080"
+     - "10003:37373"
    environment:
-     
+     - SHARD=metachain
+     - DISPLAY_NAME="MyObservingSquad-metachain"
+     - OBSERVER_DIR=~/MyObservingSquad/node-metachain
+     - IP=10.0.0.3
    volumes:
-     - 
-   entrypoint: /ENTRYPOINTS/entrypointmeta.sh
+     - ~/MyObservingSquad/node-metachain/db:/go/elrond-go/cmd/node/db
+     - ~/MyObservingSquad/node-metachain/logs:/go/elrond-go/cmd/node/logs
+     - ~/MyObservingSquad/node-metachain/config:/config
+   command: --destination-shard-as-observer=metachain --validator-key-pem-file=/config/observerKey_metachain.pem --display-name="MyObservingSquad-metachain"
    networks:
-     static-network:
-       ipv4_address: 172.16.0.3
+     elrond-squad:
+       ipv4_address: 10.0.0.3
 
  proxy:
-   image: elrond-proxy
+   image: elrondnetwork/elrond-proxy:v1.1.1
    ports:
      - "8079:8079"
    environment:
-     
-   volumes:
-     - 
+     - IP=10.0.0.2
    networks:
-     static-network:
-       ipv4_address: 172.16.0.2
- 
+     elrond-squad:
+       ipv4_address: 10.0.0.2
+
 networks:
-  static-network:
+  elrond-squad:
     ipam:
       config:
-        - subnet: 172.16.0.0/24
+        - subnet: 10.0.0.0/24
