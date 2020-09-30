@@ -12,7 +12,7 @@ services:
      - ~/MyObservingSquad/node-0/db:/go/elrond-go/cmd/node/db
      - ~/MyObservingSquad/node-0/logs:/go/elrond-go/cmd/node/logs
      - ~/MyObservingSquad/node-0/config:/config
-   command: --destination-shard-as-observer=${SHARD_0} --validator-key-pem-file=/config/observerKey_0.pem --display-name="${DISPLAY_NAME_0}"
+   command: --destination-shard-as-observer=${SHARD_0} --validator-key-pem-file=/config/observerKey_${SHARD_0}.pem --display-name="${DISPLAY_NAME_0}"
    networks:
      elrond-squad:
        ipv4_address: 10.0.0.6
@@ -28,7 +28,7 @@ services:
      - ~/MyObservingSquad/node-1/db:/go/elrond-go/cmd/node/db
      - ~/MyObservingSquad/node-1/logs:/go/elrond-go/cmd/node/logs
      - ~/MyObservingSquad/node-1/config:/config
-   command: --destination-shard-as-observer=${SHARD_1} --validator-key-pem-file=/config/observerKey_1.pem --display-name="${DISPLAY_NAME_1}"
+   command: --destination-shard-as-observer=${SHARD_1} --validator-key-pem-file=/config/observerKey_${SHARD_1}.pem --display-name="${DISPLAY_NAME_1}"
    networks:
      elrond-squad:
        ipv4_address: 10.0.0.5
@@ -43,7 +43,7 @@ services:
      - ~/MyObservingSquad/node-2/db:/go/elrond-go/cmd/node/db
      - ~/MyObservingSquad/node-2/logs:/go/elrond-go/cmd/node/logs
      - ~/MyObservingSquad/node-2/config:/config
-   command: --destination-shard-as-observer=${SHARD_2} --validator-key-pem-file=/config/observerKey_2.pem --display-name="${DISPLAY_NAME_2}"
+   command: --destination-shard-as-observer=${SHARD_2} --validator-key-pem-file=/config/observerKey_${SHARD_2}.pem --display-name="${DISPLAY_NAME_2}"
    networks:
      elrond-squad:
        ipv4_address: 10.0.0.4
@@ -59,7 +59,7 @@ services:
      - ~/MyObservingSquad/node-metachain/db:/go/elrond-go/cmd/node/db
      - ~/MyObservingSquad/node-metachain/logs:/go/elrond-go/cmd/node/logs
      - ~/MyObservingSquad/node-metachain/config:/config
-   command: --destination-shard-as-observer=${SHARD_M} --validator-key-pem-file=/config/observerKey_metachain.pem --display-name="${DISPLAY_NAME_M}"
+   command: --destination-shard-as-observer=${SHARD_M} --validator-key-pem-file=/config/observerKey_${SHARD_M}.pem --display-name="${DISPLAY_NAME_M}"
    networks:
      elrond-squad:
        ipv4_address: 10.0.0.3
