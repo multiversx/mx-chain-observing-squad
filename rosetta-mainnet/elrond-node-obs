@@ -29,6 +29,7 @@ COPY --from=builder "/lib/libwasmer_linux_amd64.so" "/lib/libwasmer_linux_amd64.
 #Enable "Database Lookup Extensions"
 WORKDIR /go/elrond-go/cmd/node/
 RUN sed -i '/\[DbLookupExtensions\]/!b;n;c\\tEnabled = true' ./config/config.toml
+RUN sed -i 's+{ Name = \"\/simulate\", Open = false },+{ Name = "/simulate", Open = true },+g' ./config/api.toml
 
 EXPOSE 8080
 ENTRYPOINT ["/go/elrond-go/cmd/node/node", "--log-save", "--log-level=*:DEBUG,core/dblookupext:WARN", "--log-logger-name", "--rest-api-interface=0.0.0.0:8080"]

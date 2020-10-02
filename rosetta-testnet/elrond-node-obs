@@ -1,7 +1,7 @@
 FROM golang:1.14.9 as builder
 
-RUN git clone https://github.com/ElrondNetwork/elrond-config-testnet && cd elrond-config-testnet && git pull && git checkout --force tags/T1.1.2.0
-RUN git clone https://github.com/ElrondNetwork/elrond-go.git && cd elrond-go && git pull && git checkout --force tags/v1.1.2
+RUN git clone https://github.com/ElrondNetwork/elrond-config-testnet && cd elrond-config-testnet && git fetch && git checkout --force tags/T1.1.2.0
+RUN git clone https://github.com/ElrondNetwork/elrond-go.git && cd elrond-go && git fetch && git checkout --force tags/v1.1.2
 
 #Build node binary
 WORKDIR /go/elrond-go/
@@ -29,6 +29,7 @@ COPY --from=builder "/lib/libwasmer_linux_amd64.so" "/lib/libwasmer_linux_amd64.
 #Enable "Database Lookup Extensions"
 WORKDIR /go/elrond-go/cmd/node/
 RUN sed -i '/\[DbLookupExtensions\]/!b;n;c\\tEnabled = true' ./config/config.toml
+RUN sed -i 's+{ Name = \"\/simulate\", Open = false },+{ Name = "/simulate", Open = true },+g' ./config/api.toml
 
 EXPOSE 8080
 ENTRYPOINT ["/go/elrond-go/cmd/node/node", "--log-save", "--log-level=*:DEBUG,core/dblookupext:WARN", "--log-logger-name", "--rest-api-interface=0.0.0.0:8080"]
