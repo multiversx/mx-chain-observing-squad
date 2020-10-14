@@ -1,7 +1,7 @@
 FROM golang:1.14.9 as builder
 
-RUN git clone https://github.com/ElrondNetwork/elrond-config-testnet && cd elrond-config-testnet && git fetch && git checkout --force tags/T1.1.0.4.a
-RUN git clone https://github.com/ElrondNetwork/elrond-go.git && cd elrond-go && git fetch && git checkout --force tags/v1.1.0
+RUN git clone https://github.com/ElrondNetwork/elrond-config-testnet && cd elrond-config-testnet && git fetch && git checkout --force tags/T1.1.2.0
+RUN git clone https://github.com/ElrondNetwork/elrond-go.git && cd elrond-go && git fetch && git checkout --force tags/v1.1.3
 
 #Build node binary
 WORKDIR /go/elrond-go/
