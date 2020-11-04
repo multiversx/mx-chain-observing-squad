@@ -7,8 +7,8 @@ Skip this if you prefer to pull from [docker hub](https://hub.docker.com/u/elron
 
 ```bash
 cd mainnet
-docker image build . -t elrondnetwork/elrond-node-obs:e1.1.0.1 -f ./elrond-node-obs
-docker image build . -t elrondnetwork/elrond-proxy:v1.1.1 -f ./elrond-proxy
+docker image build . -t elrondnetwork/elrond-node-obs:v1.1.6 -f ./elrond-node-obs
+docker image build . -t elrondnetwork/elrond-proxy:v1.1.3 -f ./elrond-proxy
 ```
 
 ```bash
@@ -19,8 +19,8 @@ docker image build . -t elrondnetwork/elrond-go-keygenerator:latest -f ./elrond-
 ## How to pull the images from Docker Hub
 
 ```bash
-docker pull elrondnetwork/elrond-node-obs:e1.1.0.1
-docker pull elrondnetwork/elrond-proxy:v1.1.1
+docker pull elrondnetwork/elrond-node-obs:v1.1.6
+docker pull elrondnetwork/elrond-proxy:v1.1.3
 docker pull elrondnetwork/elrond-go-keygenerator:latest
 ```
 
