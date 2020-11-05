@@ -161,11 +161,14 @@ git pull origin
 ```
 3. Stop the 5 containers (Proxy and Observers).
 3. Optionally, remove the old Docker images (not needed anymore).
-3. Remove the existing Docker network: `docker network rm elrond-squad`
-3. [Create a Docker network](#create-a-docker-network)
-3. [Start Observers 0, 1, 2, Metachain](#start-observers-0,-1,-2,-Metachain). Make sure you set `OBSERVER_DIR` environment variables accordingly, **in advance, with respect to your current setup**.
-3. [Start Proxy](#start-proxy).
-3. [Verify the running containers](#verify-the-running-containers).
+3. Remove the existing Docker network: 
+```
+docker network rm elrond-squad
+```
+4. [Create a Docker network](#create-a-docker-network)
+4. [Start Observers 0, 1, 2, Metachain](#start-observers-0-1-2-metachain). Make sure you set `OBSERVER_DIR` environment variables accordingly, **in advance, with respect to your current setup**.
+4. [Start Proxy](#start-proxy).
+4. [Verify the running containers](#verify-the-running-containers).
 
 ### Verify the running containers
 
