@@ -1,7 +1,7 @@
 FROM golang:1.14.9 as builder
 
-RUN git clone https://github.com/ElrondNetwork/elrond-config-mainnet && cd elrond-config-mainnet && git fetch && git checkout --force tags/e1.1.0.1
-RUN git clone https://github.com/ElrondNetwork/elrond-go.git && cd elrond-go && git fetch && git checkout --force tags/e1.1.0.1
+RUN git clone https://github.com/ElrondNetwork/elrond-config-mainnet && cd elrond-config-mainnet && git fetch && git checkout --force tags/v1.1.6.1
+RUN git clone https://github.com/ElrondNetwork/elrond-go.git && cd elrond-go && git fetch && git checkout --force tags/v1.1.6
 
 #Build node binary
 WORKDIR /go/elrond-go/
@@ -12,6 +12,7 @@ RUN go build -i -v -ldflags="-X main.appVersion=$(git describe --tags --long --d
 
 RUN cp /go/pkg/mod/github.com/!elrond!network/arwen-wasm-vm@$(cat /go/elrond-go/go.mod | grep arwen-wasm-vm | sed 's/.* //')/wasmer/libwasmer_linux_amd64.so /lib/libwasmer_linux_amd64.so
 
+#Build the arwen standalone binary
 WORKDIR /go/elrond-go
 RUN go get github.com/ElrondNetwork/arwen-wasm-vm/cmd/arwen@$(cat /go/elrond-go/go.mod | grep arwen-wasm-vm | sed 's/.* //')
 RUN go build -o ./arwen github.com/ElrondNetwork/arwen-wasm-vm/cmd/arwen
