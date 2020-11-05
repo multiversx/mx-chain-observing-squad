@@ -1,5 +1,6 @@
 # observing-squad
-Docker images and scripts for setting up an Elrond Observing Squad
+
+Docker images and scripts for setting up an Elrond Observing Squad. Rosetta images (and `docker-compose` definitions) are also included.
 
 ## How to build the images
 
@@ -24,9 +25,9 @@ docker pull elrondnetwork/elrond-proxy:v1.1.3
 docker pull elrondnetwork/elrond-go-keygenerator:latest
 ```
 
-## How to run the images
+## How to setup the Docker-based Observing Squad
 
-**Generate PEM files**
+### Generate PEM files
 
 First, generate 4 PEM files, one for each Observer by running the keygenerator 4 times:
 
@@ -48,7 +49,7 @@ After running the command 4 times, rename the resulted files to:
 sudo chown $(whoami) *
 ```
 
-**Prepare folder structure:**
+### Prepare folder structure
 
 In a folder of your choice (e.g. `MyObservingSquad`), create the following structure, and copy the observer PEM files in the `node-n/config` subfolders:
 
@@ -79,19 +80,21 @@ In a folder of your choice (e.g. `MyObservingSquad`), create the following struc
     └── config
 ```
 
-**Create a docker network:**
+### Create a docker network
 
 ```bash
 docker network create --subnet=10.0.0.0/24 elrond-squad
 ```
 
-**Clone repository**
+### Clone repository
 
 Clone this repository in order to get a copy of the files `run-observer.sh` and `run-proxy.sh`, which are needed below.
 
 ```bash
 git clone https://github.com/ElrondNetwork/observing-squad.git && cd observing-squad
 ```
+
+### Start Observers 0, 1, 2, Metachain
 
 **Start Observer of Shard 0:**
 
@@ -137,14 +140,34 @@ export IP=10.0.0.3
 ./run-observer.sh
 ```
 
-**Start Proxy:**
+### Start Proxy
 
 ```bash
 export IP=10.0.0.2
 ./run-proxy.sh
 ```
 
-## Verify the running containers:
+### How to upgrade the Docker-based Observing Squad
+
+1. Pull the new images:
+```
+docker pull elrondnetwork/elrond-node-obs:v1.1.6
+docker pull elrondnetwork/elrond-proxy:v1.1.3
+```
+2. Get the latest version of this repository.
+```
+cd observing-squad
+git pull origin
+```
+3. Stop the 5 containers (Proxy and Observers).
+3. Optionally, remove the old Docker images (not needed anymore).
+3. Remove the existing Docker network: `docker network rm elrond-squad`
+3. [Create a Docker network](#create-a-docker-network)
+3. [Start Observers 0, 1, 2, Metachain](#start-observers-0,-1,-2,-Metachain). Make sure you set `OBSERVER_DIR` environment variables accordingly, **in advance, with respect to your current setup**.
+3. [Start Proxy](#start-proxy).
+3. [Verify the running containers](#verify-the-running-containers).
+
+### Verify the running containers
 
 Do a smoke test by running some queries against the Elrond Proxy.
 
