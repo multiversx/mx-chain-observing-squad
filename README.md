@@ -169,6 +169,7 @@ docker network rm elrond-squad
 7. [Start Observers 0, 1, 2, Metachain](#start-observers-0-1-2-metachain). Make sure you set `OBSERVER_DIR` environment variables accordingly, **in advance, with respect to your current setup**.
 8. [Start Proxy](#start-proxy).
 9. [Verify the running containers](#verify-the-running-containers).
+10. Wait until the nodes are synchronized with the Netwtork. Then [verify the running containers](#verify-the-running-containers) again.
 
 ### Verify the running containers
 
@@ -180,4 +181,11 @@ curl http://10.0.0.2:8079/network/status/0 | jq
 curl http://10.0.0.2:8079/network/status/1 | jq
 curl http://10.0.0.2:8079/network/status/2 | jq
 curl http://10.0.0.2:8079/network/status/4294967295 | jq
+```
+
+An extra test would be to fetch a hyperblock:
+
+```
+SMOKE_TEST_HYPERBLOCK_NONCE=$(curl http://10.0.0.2:8079/network/status/4294967295 | jq '.data["status"]["erd_highest_final_nonce"]')
+curl http://10.0.0.2:8079/hyperblock/by-nonce/${SMOKE_TEST_HYPERBLOCK_NONCE} | jq
 ```
