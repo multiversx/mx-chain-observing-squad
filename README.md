@@ -176,16 +176,25 @@ docker network rm elrond-squad
 Do a smoke test by running some queries against the Elrond Proxy.
 
 ```bash
-curl http://10.0.0.2:8079/network/config | jq
-curl http://10.0.0.2:8079/network/status/0 | jq
-curl http://10.0.0.2:8079/network/status/1 | jq
-curl http://10.0.0.2:8079/network/status/2 | jq
-curl http://10.0.0.2:8079/network/status/4294967295 | jq
+PROXY=http://10.0.0.2:8079
+curl ${PROXY}/network/config | jq
+curl ${PROXY}/network/status/0 | jq
+curl ${PROXY}/network/status/1 | jq
+curl ${PROXY}/network/status/2 | jq
+curl ${PROXY}/network/status/4294967295 | jq
 ```
 
-An extra test would be to fetch a hyperblock:
-
+Extra smoke test - fetch a hyperblock:
 ```
 SMOKE_TEST_HYPERBLOCK_NONCE=$(curl http://10.0.0.2:8079/network/status/4294967295 | jq '.data["status"]["erd_highest_final_nonce"]')
 curl http://10.0.0.2:8079/hyperblock/by-nonce/${SMOKE_TEST_HYPERBLOCK_NONCE} | jq
+```
+
+Extra smoke test - fetch a transaction, and inspect its `status` and `hyperblockNonce` fields (which must be set):
+```
+PROXY=http://10.0.0.2:8079
+TRANSACTION_HASH=a7264ecf00ad4e760d6a6bfdb3dcd1f8fb2acacb8d53577e74c09b6148812bd8
+curl ${PROXY}/transaction/${TRANSACTION_HASH} | jq
+curl ${PROXY}/transaction/${TRANSACTION_HASH} | jq '.data["transaction"]["status"]'
+curl ${PROXY}/transaction/${TRANSACTION_HASH} | jq '.data["transaction"]["hyperblockNonce"]'
 ```
