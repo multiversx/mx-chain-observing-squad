@@ -198,3 +198,21 @@ curl ${PROXY}/transaction/${TRANSACTION_HASH} | jq
 curl ${PROXY}/transaction/${TRANSACTION_HASH} | jq '.data["transaction"]["status"]'
 curl ${PROXY}/transaction/${TRANSACTION_HASH} | jq '.data["transaction"]["hyperblockNonce"]'
 ```
+
+### Check versions of running Nodes (containers)
+
+```
+curl 10.0.0.6:8080/node/status | jq '.data["metrics"]["erd_latest_tag_software_version"]'
+curl 10.0.0.5:8080/node/status | jq '.data["metrics"]["erd_latest_tag_software_version"]'
+curl 10.0.0.4:8080/node/status | jq '.data["metrics"]["erd_latest_tag_software_version"]'
+curl 10.0.0.3:8080/node/status | jq '.data["metrics"]["erd_latest_tag_software_version"]'
+```
+
+### Check public keys of Observers
+
+```
+curl 10.0.0.6:8080/node/status | jq '.data["metrics"]["erd_public_key_block_sign"]'
+curl 10.0.0.5:8080/node/status | jq '.data["metrics"]["erd_public_key_block_sign"]'
+curl 10.0.0.4:8080/node/status | jq '.data["metrics"]["erd_public_key_block_sign"]'
+curl 10.0.0.3:8080/node/status | jq '.data["metrics"]["erd_public_key_block_sign"]'
+```
