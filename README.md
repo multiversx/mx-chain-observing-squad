@@ -104,7 +104,7 @@ export DISPLAY_NAME="MyObservingSquad-0"
 export OBSERVER_DIR=~/MyObservingSquad/node-0
 export P2P_PORT=10000
 export IP=10.0.0.6
-./run-observer.sh
+./mainnet/run-observer.sh
 ```
 
 **Start Observer of Shard 1:**
@@ -115,7 +115,7 @@ export DISPLAY_NAME="MyObservingSquad-1"
 export OBSERVER_DIR=~/MyObservingSquad/node-1
 export P2P_PORT=10001
 export IP=10.0.0.5
-./run-observer.sh
+./mainnet/run-observer.sh
 ```
 
 **Start Observer of Shard 2:**
@@ -126,7 +126,7 @@ export DISPLAY_NAME="MyObservingSquad-2"
 export OBSERVER_DIR=~/MyObservingSquad/node-2
 export P2P_PORT=10002
 export IP=10.0.0.4
-./run-observer.sh
+./mainnet/run-observer.sh
 ```
 
 **Start Observer of Metachain:**
@@ -137,14 +137,14 @@ export DISPLAY_NAME="MyObservingSquad-metachain"
 export OBSERVER_DIR=~/MyObservingSquad/node-metachain
 export P2P_PORT=10003
 export IP=10.0.0.3
-./run-observer.sh
+./mainnet/run-observer.sh
 ```
 
 ### Start Proxy
 
 ```bash
 export IP=10.0.0.2
-./run-proxy.sh
+./mainnet/run-proxy.sh
 ```
 
 ### How to upgrade the Docker-based Observing Squad
