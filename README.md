@@ -8,7 +8,7 @@ Skip this if you prefer to pull from [docker hub](https://hub.docker.com/u/elron
 
 ```bash
 cd mainnet
-docker image build . -t elrondnetwork/elrond-node-obs:v1.1.6 -f ./elrond-node-obs
+docker image build . -t elrondnetwork/elrond-node-obs:v1.1.10 -f ./elrond-node-obs
 docker image build . -t elrondnetwork/elrond-proxy:v1.1.3 -f ./elrond-proxy
 ```
 
@@ -20,7 +20,7 @@ docker image build . -t elrondnetwork/elrond-go-keygenerator:latest -f ./elrond-
 ## How to pull the images from Docker Hub
 
 ```bash
-docker pull elrondnetwork/elrond-node-obs:v1.1.6
+docker pull elrondnetwork/elrond-node-obs:v1.1.10
 docker pull elrondnetwork/elrond-proxy:v1.1.3
 docker pull elrondnetwork/elrond-go-keygenerator:latest
 ```
@@ -104,7 +104,7 @@ export DISPLAY_NAME="MyObservingSquad-0"
 export OBSERVER_DIR=~/MyObservingSquad/node-0
 export P2P_PORT=10000
 export IP=10.0.0.6
-./run-observer.sh
+./mainnet/run-observer.sh
 ```
 
 **Start Observer of Shard 1:**
@@ -115,7 +115,7 @@ export DISPLAY_NAME="MyObservingSquad-1"
 export OBSERVER_DIR=~/MyObservingSquad/node-1
 export P2P_PORT=10001
 export IP=10.0.0.5
-./run-observer.sh
+./mainnet/run-observer.sh
 ```
 
 **Start Observer of Shard 2:**
@@ -126,7 +126,7 @@ export DISPLAY_NAME="MyObservingSquad-2"
 export OBSERVER_DIR=~/MyObservingSquad/node-2
 export P2P_PORT=10002
 export IP=10.0.0.4
-./run-observer.sh
+./mainnet/run-observer.sh
 ```
 
 **Start Observer of Metachain:**
@@ -137,21 +137,21 @@ export DISPLAY_NAME="MyObservingSquad-metachain"
 export OBSERVER_DIR=~/MyObservingSquad/node-metachain
 export P2P_PORT=10003
 export IP=10.0.0.3
-./run-observer.sh
+./mainnet/run-observer.sh
 ```
 
 ### Start Proxy
 
 ```bash
 export IP=10.0.0.2
-./run-proxy.sh
+./mainnet/run-proxy.sh
 ```
 
 ### How to upgrade the Docker-based Observing Squad
 
 1. Pull the new images:
 ```
-docker pull elrondnetwork/elrond-node-obs:v1.1.6
+docker pull elrondnetwork/elrond-node-obs:v1.1.10
 docker pull elrondnetwork/elrond-proxy:v1.1.3
 ```
 2. Get the latest version of this repository.
