@@ -8,7 +8,7 @@ WORKDIR /go/elrond-go/
 RUN GO111MODULE=on go mod vendor
 
 WORKDIR /go/elrond-go/cmd/node
-RUN go build -i -v -ldflags="-X main.appVersion=$(git -C ../../../elrond-config-mainnet describe --tags --long --dirty)"
+RUN go build -i -v -ldflags="-X main.appVersion=$(git -C /go/elrond-config-mainnet describe --tags --long --dirty)"
 
 RUN cp /go/pkg/mod/github.com/!elrond!network/arwen-wasm-vm@$(cat /go/elrond-go/go.mod | grep arwen-wasm-vm | sed 's/.* //')/wasmer/libwasmer_linux_amd64.so /lib/libwasmer_linux_amd64.so
 
