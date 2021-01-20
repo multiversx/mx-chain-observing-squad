@@ -151,8 +151,8 @@ export IP=10.0.0.2
 
 1. Pull the new images:
 ```
-docker pull elrondnetwork/elrond-node-obs:v1.1.10
-docker pull elrondnetwork/elrond-proxy:v1.1.3
+docker pull elrondnetwork/elrond-node-obs:v1.1.24
+docker pull elrondnetwork/elrond-proxy:v1.1.4
 ```
 2. Get the latest version of this repository.
 ```
