@@ -1,2 +1,2 @@
 #!/bin/bash
-docker run --network=elrond-squad --ip=${IP} --name proxy elrondnetwork/elrond-proxy:v1.1.3
+ docker run --network=elrond-squad --ip=${IP} --name proxy elrondnetwork/elrond-proxy:v1.1.4

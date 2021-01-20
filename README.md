@@ -8,8 +8,8 @@ Skip this if you prefer to pull from [docker hub](https://hub.docker.com/u/elron
 
 ```bash
 cd mainnet
-docker image build . -t elrondnetwork/elrond-node-obs:v1.1.10 -f ./elrond-node-obs
-docker image build . -t elrondnetwork/elrond-proxy:v1.1.3 -f ./elrond-proxy
+docker image build . -t elrondnetwork/elrond-node-obs:v1.1.24 -f ./elrond-node-obs
+docker image build . -t elrondnetwork/elrond-proxy:v1.1.4 -f ./elrond-proxy
 ```
 
 ```bash
@@ -20,8 +20,8 @@ docker image build . -t elrondnetwork/elrond-go-keygenerator:latest -f ./elrond-
 ## How to pull the images from Docker Hub
 
 ```bash
-docker pull elrondnetwork/elrond-node-obs:v1.1.10
-docker pull elrondnetwork/elrond-proxy:v1.1.3
+docker pull elrondnetwork/elrond-node-obs:v1.1.24
+docker pull elrondnetwork/elrond-proxy:v1.1.4
 docker pull elrondnetwork/elrond-go-keygenerator:latest
 ```
 
@@ -151,8 +151,8 @@ export IP=10.0.0.2
 
 1. Pull the new images:
 ```
-docker pull elrondnetwork/elrond-node-obs:v1.1.10
-docker pull elrondnetwork/elrond-proxy:v1.1.3
+docker pull elrondnetwork/elrond-node-obs:v1.1.24
+docker pull elrondnetwork/elrond-proxy:v1.1.4
 ```
 2. Get the latest version of this repository.
 ```
