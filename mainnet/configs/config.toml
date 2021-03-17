@@ -1,7 +1,7 @@
 # GeneralSettings section of the proxy server
 [GeneralSettings]
-   # ServerPort is the port used for the web server. The frontend will connect to this port
-   ServerPort = 8079
+    # ServerPort is the port used for the web server. The frontend will connect to this port
+    ServerPort = 8079
 
     # RequestTimeoutSec represents the maximum number of seconds a request can last until throwing an error
     RequestTimeoutSec = 10
@@ -47,6 +47,16 @@
 
 [Hasher]
     Type = "blake2b"
+
+# ApiLogging holds settings related to api requests logging
+[ApiLogging]
+    # LoggingEnabled - if this flag is set to true, then if a requests exceeds a threshold or it is unsuccessful, then
+    # a log will be printed
+    LoggingEnabled = false
+
+    # ThresholdInMicroSeconds represents the maximum duration to consider a request as normal. Above this, if the LoggingEnabled
+    # flag is set to true, then a log will be printed
+    ThresholdInMicroSeconds = 100
 
 # List of Observers. If you want to define a metachain observer (needed for validator statistics route) use
 # shard id 4294967295
