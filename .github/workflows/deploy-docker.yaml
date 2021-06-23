@@ -36,6 +36,7 @@ jobs:
           cd ${GITHUB_WORKSPACE}/mainnet/ && docker image build . -t "${REGISTRY_HOSTNAME}/${PROXY_TAG}" -f ./elrond-proxy
       - name: Push images
         run: |
-          docker login --username lucianmincu --password ${{ secrets.DOCKERHUB_TOKEN }}
+          docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
           docker push "${REGISTRY_HOSTNAME}/${NODE_TAG}"
           docker push "${REGISTRY_HOSTNAME}/${PROXY_TAG}"
+          docker logout
