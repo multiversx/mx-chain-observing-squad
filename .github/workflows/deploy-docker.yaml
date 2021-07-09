@@ -1,0 +1,42 @@
+env:
+  REGISTRY_HOSTNAME: elrondnetwork
+
+name: Build Docker images & push
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-docker-images:
+    strategy:
+      matrix:
+        runs-on: [ubuntu-latest]
+    runs-on: ${{ matrix.runs-on }}
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Import environment variables from a file
+        shell: bash
+        run: |
+          ENV_FILE="${GITHUB_WORKSPACE}/mainnet/.env"
+          while read -r line; do
+            if [[ "$line" != NODE_TAG* ]] && [[ "$line" != PROXY_TAG* ]] ; then
+              continue
+            fi
+            echo "$line" >> $GITHUB_ENV
+          done < ${ENV_FILE}
+      - name: Build node image
+        run: |
+          cd ${GITHUB_WORKSPACE}/mainnet/ && docker image build . -t "${REGISTRY_HOSTNAME}/${NODE_TAG}" -f ./elrond-node-obs
+      - name: Build proxy image
+        run: |
+          cd ${GITHUB_WORKSPACE}/mainnet/ && docker image build . -t "${REGISTRY_HOSTNAME}/${PROXY_TAG}" -f ./elrond-proxy
+      - name: Push images
+        run: |
+          docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
+          docker push "${REGISTRY_HOSTNAME}/${NODE_TAG}"
+          docker push "${REGISTRY_HOSTNAME}/${PROXY_TAG}"
+          docker logout
