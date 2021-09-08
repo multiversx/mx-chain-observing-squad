@@ -1,7 +1,7 @@
 FROM golang:1.14.9 as builder
 
-RUN git clone https://github.com/ElrondNetwork/elrond-config-mainnet && cd elrond-config-mainnet && git fetch && git checkout --force tags/v1.1.10.0
-RUN git clone https://github.com/ElrondNetwork/elrond-go.git && cd elrond-go && git fetch && git checkout --force tags/v1.1.10
+RUN git clone https://github.com/ElrondNetwork/elrond-config-mainnet && cd elrond-config-mainnet && git checkout --force tags/v1.1.65.0
+RUN git clone https://github.com/ElrondNetwork/elrond-go.git && cd elrond-go && git checkout --force tags/v1.1.65
 
 #Build node binary
 WORKDIR /go/elrond-go/
@@ -9,14 +9,8 @@ RUN GO111MODULE=on go mod vendor
 
 WORKDIR /go/elrond-go/cmd/node
 RUN go build -i -v -ldflags="-X main.appVersion=$(git -C /go/elrond-config-mainnet describe --tags --long --dirty)"
+RUN cp /go/pkg/mod/github.com/!elrond!network/arwen-wasm-vm@$(cat /go/elrond-go/go.mod | grep arwen-wasm-vm | sed 's/.* //' | tail -n 1)/wasmer/libwasmer_linux_amd64.so /lib/libwasmer_linux_amd64.so
 
-RUN cp /go/pkg/mod/github.com/!elrond!network/arwen-wasm-vm@$(cat /go/elrond-go/go.mod | grep arwen-wasm-vm | sed 's/.* //')/wasmer/libwasmer_linux_amd64.so /lib/libwasmer_linux_amd64.so
-
-#Build the arwen standalone binary
-WORKDIR /go/elrond-go
-RUN go get github.com/ElrondNetwork/arwen-wasm-vm/cmd/arwen@$(cat /go/elrond-go/go.mod | grep arwen-wasm-vm | sed 's/.* //')
-RUN go build -o ./arwen github.com/ElrondNetwork/arwen-wasm-vm/cmd/arwen
-RUN cp /go/elrond-go/arwen /go/elrond-go/cmd/node/
 
 #Copy the right configs to the node folder
 WORKDIR /go/elrond-config-mainnet/
