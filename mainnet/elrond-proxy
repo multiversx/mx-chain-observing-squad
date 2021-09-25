@@ -1,23 +1,18 @@
-FROM golang:1.14.9 as builder
+FROM golang:1.15.7 as builder
 
 RUN mkdir /root/.ssh && chmod 700 /root/.ssh
 	
 # Clone the elrond-proxy-go repo 
-RUN git clone -b master https://github.com/ElrondNetwork/elrond-proxy-go.git && cd elrond-proxy-go && git checkout --force tags/v1.1.13
+RUN git clone -b master https://github.com/ElrondNetwork/elrond-proxy-go.git && cd elrond-proxy-go && git checkout --force tags/v1.1.16
 
 # Proxy
 WORKDIR /go/elrond-proxy-go/cmd/proxy
 RUN go build
 
-# $(ls /go/pkg/mod/github.com/!elrond!network/ | grep arwen-wasm-vm | sed 's/.* //' | head -1) this command is required  to be able to extract the full name of the directory that starts with 'arwen-wasm-wm'
-RUN cp /go/pkg/mod/github.com/!elrond!network/$(ls /go/pkg/mod/github.com/!elrond!network/ | grep arwen-wasm-vm | sed 's/.* //' | head -1)/wasmer/libwasmer_linux_amd64.so /lib/libwasmer_linux_amd64.so
-
 # ===== SECOND STAGE ======
 FROM ubuntu:18.04
 
 #Copy the built app to the container
-
-COPY --from=builder "/lib/libwasmer_linux_amd64.so" "/lib/libwasmer_linux_amd64.so"
 COPY --from=builder /go/elrond-proxy-go/cmd/proxy /go/elrond-proxy-go/cmd/proxy
 COPY configs/config.toml /go/elrond-proxy-go/cmd/proxy/config/
 
