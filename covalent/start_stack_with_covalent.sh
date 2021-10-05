@@ -26,7 +26,6 @@ done
 
 for OBSERVER in "${NODES[@]}"
 do
-  echo "${OBSERVER}"
   cp configs/external.toml ${STACK_FOLDER}/node-"$OBSERVER"/config/
 done
 
