@@ -7,7 +7,6 @@ ENV CONFIG_FOLDER_NAME=elrond-config-$NETWORK
 
 RUN git clone https://github.com/ElrondNetwork/$CONFIG_FOLDER_NAME && cd $CONFIG_FOLDER_NAME && git checkout --force tags/$CONFIG_TAG
 
-
 RUN cat /go/$CONFIG_FOLDER_NAME/binaryVersion > ./result
 RUN git clone https://github.com/ElrondNetwork/elrond-go.git && cd elrond-go && git checkout --force $(cat /go/result)
 
