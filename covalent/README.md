@@ -1,22 +1,24 @@
 ## Covalent-observing-squad
 
-
-### Get docker image
-```
-docker pull elrondnetwork/elrond-node-obs-covalent:latest
-```
-
 ### Build docker image
 
-In order to can build a Docker image have to do some setup in the `elrond-node-obs` Docker file
+In order to can build a Docker image have to do some setup in the `build_docker_image.sh` file
 
-1. set tag version for elrond-config-mainnet (also can be changed in elrond-config-testnet or elrond-config-devnet)
+1. set docker image name (IMAGE_NAME variable)
 
-2. set tag version for elrond-go
+2. set config tag that will be used (CONFIG_TAG variable)
+
+3. set network (can be "mainnet", "devnet", or "testnet", NETWORK variable)
+
+Run script for build 
+
+```
+./build_docker_image.sh
+```
 
 Useful links:
 
-[elrond-config-mainnet](https://github.com/ElrondNetwork/elrond-config-mainnet)
+[elrond-config-mainnet](https://github.com/ElrondNetwork/elrond-config-mainnet) - can find tag for mainnet config here
 
 [elrond-config-testnet](https://github.com/ElrondNetwork/elrond-config-testnet)
 
@@ -28,7 +30,7 @@ Useful links:
 
 Covalent squad will contain 4 observers one for every shard.
 
-In order to can run this have to set in `.env` file what Docker image to use.
+In order to can run this have to set in `.env` file what Docker image to use. (the name that was set on the build step)
 ``` 
 NODE_TAG=elrond-go-node-mainnet-with-covalent:latest
 ```
