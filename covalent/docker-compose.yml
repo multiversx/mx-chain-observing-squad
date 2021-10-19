@@ -2,7 +2,7 @@ version: '3'
 
 services:
  observer-0:
-   image: elrondnetwork/${NODE_TAG}
+   image: ${NODE_TAG}
    ports:
      - "8080:8080"
      - "10000:37373"
@@ -19,7 +19,7 @@ services:
        ipv4_address: 10.0.0.6
 
  observer-1:
-   image: elrondnetwork/${NODE_TAG}
+   image: ${NODE_TAG}
    ports:
      - "8081:8080"
      - "10001:37373"
@@ -35,7 +35,7 @@ services:
      elrond-squad:
        ipv4_address: 10.0.0.5
  observer-2:
-   image: elrondnetwork/${NODE_TAG}
+   image: ${NODE_TAG}
    ports:
     - "8082:8080"
     - "10002:37373"
@@ -52,7 +52,7 @@ services:
        ipv4_address: 10.0.0.4
 
  observer-meta:
-   image: elrondnetwork/${NODE_TAG}
+   image: ${NODE_TAG}
    ports:
      - "8083:8080"
      - "10003:37373"
