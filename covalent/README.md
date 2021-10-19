@@ -2,7 +2,7 @@
 
 ### Build docker image
 
-In order to can build a Docker image have to do some setup in the `build_docker_image.sh` file
+In order to build a Docker image have to do some setup in the `build_docker_image.sh` file
 
 1. set docker image name (IMAGE_NAME variable)
 
