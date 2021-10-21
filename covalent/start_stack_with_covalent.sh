@@ -31,6 +31,6 @@ done
 
 # Start the stack
 echo -e
-echo -e "${GREEN}--> Starting the Observer+Proxy Stack...${NC}"
+echo -e "${GREEN}--> Starting the Observers Stack...${NC}"
 echo -e
 docker-compose --env-file .env up -d
