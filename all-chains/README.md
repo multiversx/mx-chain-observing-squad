@@ -23,7 +23,7 @@ Open file `.env` and set some variables
     Example: `IMAGE_NAME=elrond-node-testnet:local`
 
 
-- Set `IMAGE_NAME` variable for proxy
+- Set `PROXY_IMAGE_NAME` variable for proxy
 
   Example: `PROXY_IMAGE_NAME=elrond-proxy:local`
 
