@@ -5,7 +5,7 @@ Docker images and scripts for setting up an Elrond Observing Squad. Squad can be
 ## Build docker images for observers and proxy
 
 
-### Pre-requests
+### Prerequisite
 
 Open file `.env` and set some variables
 - Set `CONFIG_TAG` variable with config-tag (tags can be found here for [mainnet](https://github.com/ElrondNetwork/elrond-config-mainnet), [testnet](https://github.com/ElrondNetwork/elrond-config-testnet) or [devnet](https://github.com/ElrondNetwork/elrond-config-devnet))
