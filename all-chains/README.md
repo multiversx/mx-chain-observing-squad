@@ -29,7 +29,7 @@ Open file `.env` and set some variables
 
 ### Build docker images 
 
-In order to build a Docker image one has to run scripts:
+In order to build a Docker images one has to run scripts:
 
 - For observer:
 ```
