@@ -67,7 +67,7 @@ services:
  proxy:
    image: elrondnetwork/${PROXY_TAG}
    ports:
-     - "8079:8079"
+     - "${PROXY_PORT}:8079"
    environment:
      - IP=10.0.0.2
    networks:
