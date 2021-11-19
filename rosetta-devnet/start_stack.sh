@@ -8,7 +8,7 @@ NC='\x1B[0m'
 
 declare -a NODES=("0" "1" "2" "metachain")
 
-STACK_FOLDER=~/MyObservingSquadTestnet
+STACK_FOLDER=~/MyObservingSquadDevnet
 KEYS_FOLDER=${STACK_FOLDER}/keys
 
 #Create the folder structure for the observer stack

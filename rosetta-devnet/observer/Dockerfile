@@ -1,19 +1,18 @@
 FROM golang:1.15.7 as builder
 
-RUN git clone https://github.com/ElrondNetwork/elrond-config-mainnet && cd elrond-config-mainnet && git checkout --force tags/v1.2.30.1
+RUN git clone https://github.com/ElrondNetwork/elrond-config-devnet.git && cd elrond-config-devnet && git checkout --force tags/D1.2.30.0
 RUN git clone https://github.com/ElrondNetwork/elrond-go.git && cd elrond-go && git checkout --force tags/v1.2.30
 
 #Build node binary
 WORKDIR /go/elrond-go/
-RUN GO111MODULE=on go mod vendor
 
 WORKDIR /go/elrond-go/cmd/node
-RUN go build -i -v -ldflags="-X main.appVersion=$(git -C /go/elrond-config-mainnet describe --tags --long --dirty)"
+RUN go build -i -v -ldflags="-X main.appVersion=$(git -C /go/elrond-config-devnet describe --tags --long --dirty)"
 RUN cp /go/pkg/mod/github.com/!elrond!network/arwen-wasm-vm@$(cat /go/elrond-go/go.mod | grep arwen-wasm-vm | sed 's/.* //' | tail -n 1)/wasmer/libwasmer_linux_amd64.so /lib/libwasmer_linux_amd64.so
 
 
 #Copy the right configs to the node folder
-WORKDIR /go/elrond-config-mainnet/
+WORKDIR /go/elrond-config-devnet/
 RUN cp -r * /go/elrond-go/cmd/node/config/
 
 # ===== SECOND STAGE ======
