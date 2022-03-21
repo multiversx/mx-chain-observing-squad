@@ -1,6 +1,6 @@
 FROM golang:1.14.9 as builder
 
-RUN git clone https://github.com/ElrondNetwork/elrond-go.git
+RUN git clone https://github.com/ElrondNetwork/elrond-go.git && cd elrond-go && git checkout --force tags/v1.2.38
 
 #Build keygenerator
 WORKDIR /go/elrond-go/
