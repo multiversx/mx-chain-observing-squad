@@ -1,4 +1,4 @@
-FROM golang:1.15.7 as builder
+FROM golang:1.18 as builder
 
 RUN git clone https://github.com/ElrondNetwork/elrond-config-devnet.git && cd elrond-config-devnet && git checkout --force tags/D1.2.30.0
 RUN git clone https://github.com/ElrondNetwork/elrond-go.git && cd elrond-go && git checkout --force tags/v1.2.30

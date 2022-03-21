@@ -1,4 +1,4 @@
-FROM golang:1.14.9 as builder
+FROM golang:1.18 as builder
 
 RUN mkdir /root/.ssh && chmod 700 /root/.ssh
 	
