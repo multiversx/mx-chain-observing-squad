@@ -17,13 +17,19 @@ WORKDIR /go/elrond-config-mainnet/
 RUN cp -r * /go/elrond-go/cmd/node/config/
 
 # ===== SECOND STAGE ======
-FROM ubuntu:18.04
-COPY --from=builder "/go/elrond-go/cmd/node" "/go/elrond-go/cmd/node/"
+FROM ubuntu:20.04
+
+ENV workdir=/go/elrond-go/cmd/node
+ENV uid=1000
+RUN useradd -U -u ${uid} -d ${workdir} -M -s /sbin/nologin elrond
+
+COPY --from=builder "${workdir}" "${workdir}"
 COPY --from=builder "/lib/libwasmer_linux_amd64.so" "/lib/libwasmer_linux_amd64.so"
+COPY entrypoint.sh /
 
 #Enable "Database Lookup Extensions"
-WORKDIR /go/elrond-go/cmd/node/
+WORKDIR ${workdir}
 RUN sed -i '/\[DbLookupExtensions\]/!b;n;c\\tEnabled = true' ./config/config.toml
 
 EXPOSE 8080
-ENTRYPOINT ["/go/elrond-go/cmd/node/node", "--log-save", "--log-level=*:DEBUG,core/dblookupext:WARN", "--log-logger-name", "--rest-api-interface=0.0.0.0:8080"]
+ENTRYPOINT ["/entrypoint.sh", "/go/elrond-go/cmd/node/node", "--log-save", "--log-level=*:DEBUG,core/dblookupext:WARN", "--log-logger-name", "--rest-api-interface=0.0.0.0:8080"]
