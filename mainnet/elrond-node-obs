@@ -5,7 +5,6 @@ RUN git clone https://github.com/ElrondNetwork/elrond-go.git && cd elrond-go && 
 
 #Build node binary
 WORKDIR /go/elrond-go/
-RUN GO111MODULE=on go mod vendor
 
 WORKDIR /go/elrond-go/cmd/node
 RUN go build -i -v -ldflags="-X main.appVersion=$(git -C /go/elrond-config-mainnet describe --tags --long --dirty)"
