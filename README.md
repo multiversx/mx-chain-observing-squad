@@ -1,6 +1,6 @@
 # observing-squad
 
-Docker images and scripts for setting up an Elrond Observing Squad. Rosetta images (and `docker-compose` definitions) are also included.
+Docker images and scripts for setting up an Elrond Observing Squad.
 
 ## How to build the images
 
