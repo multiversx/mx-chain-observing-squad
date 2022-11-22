@@ -3,7 +3,7 @@ FROM golang:1.15.7 as builder
 RUN mkdir /root/.ssh && chmod 700 /root/.ssh
 	
 # Clone the elrond-proxy-go repo 
-RUN git clone -b master https://github.com/ElrondNetwork/elrond-proxy-go.git && cd elrond-proxy-go && git checkout --force tags/v1.1.25
+RUN git clone -b master https://github.com/ElrondNetwork/elrond-proxy-go.git && cd elrond-proxy-go && git checkout --force tags/v1.1.27
 
 # Proxy
 WORKDIR /go/elrond-proxy-go/cmd/proxy
