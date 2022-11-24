@@ -1,4 +1,4 @@
-FROM golang:1.15.7 as builder
+FROM golang:1.17.6 as builder
 
 ARG CONFIG_TAG
 ARG NETWORK
@@ -24,7 +24,8 @@ WORKDIR /go/$CONFIG_FOLDER_NAME/
 RUN cp -r * /go/elrond-go/cmd/node/config/
 
 # ===== SECOND STAGE ======
-FROM ubuntu:18.04
+FROM ubuntu:22.04
+RUN apt-get update -y && apt-get upgrade -y
 COPY --from=builder "/go/elrond-go/cmd/node" "/go/elrond-go/cmd/node/"
 COPY --from=builder "/lib/libwasmer_linux_amd64.so" "/lib/libwasmer_linux_amd64.so"
 

@@ -10,7 +10,8 @@ WORKDIR /go/elrond-go/cmd/keygenerator
 RUN go build
 
 # ===== SECOND STAGE ======
-FROM ubuntu:18.04
+FROM ubuntu:22.04
+RUN apt-get update -y && apt-get upgrade -y
 COPY --from=builder /go/elrond-go/cmd/keygenerator /go/elrond-go/cmd/keygenerator
 
 ENTRYPOINT ["/go/elrond-go/cmd/keygenerator/keygenerator"]
