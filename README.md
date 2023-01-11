@@ -8,7 +8,7 @@ Skip this if you prefer to pull from [docker hub](https://hub.docker.com/u/multi
 
 ```bash
 cd mainnet
-docker image build . -t multiversx/multiversx-node-obs:v1.3.50.1 -f ./multiversx-node-obs
+docker image build . -t multiversx/multiversx-node-obs:v1.3.50.3 -f ./multiversx-node-obs
 docker image build . -t multiversx/multiversx-proxy:v1.1.27 -f ./multiversx-proxy
 ```
 
@@ -20,7 +20,7 @@ docker image build . -t multiversx/multiversx-node-keygenerator:latest -f ./mult
 ## How to pull the images from Docker Hub
 
 ```bash
-docker pull multiversx/multiversx-node-obs:v1.3.50.1
+docker pull multiversx/multiversx-node-obs:v1.3.50.3
 docker pull multiversx/multiversx-proxy:v1.1.27
 docker pull multiversx/multiversx-node-keygenerator:latest
 ```
@@ -151,7 +151,7 @@ export IP=10.0.0.2
 
 1. Pull the new images:
 ```
-docker pull multiversx/multiversx-node-obs:v1.3.50.1
+docker pull multiversx/multiversx-node-obs:v1.3.50.3
 docker pull multiversx/multiversx-proxy:v1.1.27
 ```
 2. Get the latest version of this repository.
