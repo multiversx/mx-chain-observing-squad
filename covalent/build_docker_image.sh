@@ -1,4 +1,4 @@
-IMAGE_NAME="elrond-node-obs:local"
+IMAGE_NAME="multiversx-node-obs:local"
 CONFIG_TAG="D1.2.24.0-covalent1.0.3"
 
 # network can we "mainnet", "testnet" or "devnet"

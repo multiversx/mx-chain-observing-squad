@@ -1,0 +1,22 @@
+FROM golang:1.17.6 as builder
+
+RUN mkdir /root/.ssh && chmod 700 /root/.ssh
+	
+# Clone the mx-chain-proxy-go repo
+RUN git clone -b master https://github.com/multiversx/mx-chain-proxy-go.git && cd mx-chain-proxy-go && git checkout --force tags/v1.1.27
+
+# Proxy
+WORKDIR /go/mx-chain-proxy-go/cmd/proxy
+RUN go build -ldflags="-X main.appVersion=$(git describe --tags --long --dirty) -X main.commitID=$(git rev-parse HEAD)"
+
+# ===== SECOND STAGE ======
+FROM ubuntu:18.04
+
+#Copy the built app to the container
+COPY --from=builder /go/mx-chain-proxy-go/cmd/proxy /go/mx-chain-proxy-go/cmd/proxy
+COPY configs/config.toml /go/mx-chain-proxy-go/cmd/proxy/config/
+
+
+WORKDIR /go/mx-chain-proxy-go/cmd/proxy/
+EXPOSE 8079
+CMD ["./proxy"]

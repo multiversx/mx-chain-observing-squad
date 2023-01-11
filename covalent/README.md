@@ -18,13 +18,13 @@ Run script for build
 
 Useful links to:
 
-[elrond-config-mainnet](https://github.com/ElrondNetwork/elrond-config-mainnet) - can find tag for mainnet config here
+[mx-chain-mainnet-config](https://github.com/multiversx/mx-chain-mainnet-config) - can find tag for mainnet config here
 
-[elrond-config-testnet](https://github.com/ElrondNetwork/elrond-config-testnet)
+[mx-chain-testnet-config](https://github.com/multiversx/mx-chain-testnet-config)
 
-[elrond-config-devnet](https://github.com/ElrondNetwork/elrond-config-devnet)
+[mx-chain-devnet-config](https://github.com/multiversx/mx-chain-devnet-config)
 
-[elrond-go](https://github.com/ElrondNetwork/elrond-go)
+[mx-chain-go](https://github.com/multiversx/mx-chain-go)
 
 ### Docker-compose setup 
 
@@ -32,7 +32,7 @@ Covalent squad will contain 4 observers, one for every shard.
 
 In order to run this one has to set in `.env` file what Docker image to use. (the name that was set on the build step)
 ``` 
-NODE_TAG=elrond-go-node-mainnet-with-covalent:latest
+NODE_TAG=multiversx-node-mainnet-with-covalent:latest
 ```
 
 Depending on the used Docker image we can connect to the `mainnet`, `testnet` or `devnet`.

@@ -1,5 +1,5 @@
 env:
-  REGISTRY_HOSTNAME: elrondnetwork
+  REGISTRY_HOSTNAME: multiversx
 
 name: Build Docker images & push
 
@@ -30,10 +30,10 @@ jobs:
           done < ${ENV_FILE}
       - name: Build node image
         run: |
-          cd ${GITHUB_WORKSPACE}/mainnet/ && docker image build . -t "${REGISTRY_HOSTNAME}/${NODE_TAG}" -f ./elrond-node-obs
+          cd ${GITHUB_WORKSPACE}/mainnet/ && docker image build . -t "${REGISTRY_HOSTNAME}/${NODE_TAG}" -f ./multiversx-node-obs
       - name: Build proxy image
         run: |
-          cd ${GITHUB_WORKSPACE}/mainnet/ && docker image build . -t "${REGISTRY_HOSTNAME}/${PROXY_TAG}" -f ./elrond-proxy
+          cd ${GITHUB_WORKSPACE}/mainnet/ && docker image build . -t "${REGISTRY_HOSTNAME}/${PROXY_TAG}" -f ./multiversx-proxy
       - name: Push images
         run: |
           docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}

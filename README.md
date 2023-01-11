@@ -1,28 +1,28 @@
 # observing-squad
 
-Docker images and scripts for setting up an Elrond Observing Squad.
+Docker images and scripts for setting up a MultiversX Observing Squad.
 
 ## How to build the images
 
-Skip this if you prefer to pull from [docker hub](https://hub.docker.com/u/elrondnetwork) instead.
+Skip this if you prefer to pull from [docker hub](https://hub.docker.com/u/multiversx) instead.
 
 ```bash
 cd mainnet
-docker image build . -t elrondnetwork/elrond-node-obs:v1.3.50.1 -f ./elrond-node-obs
-docker image build . -t elrondnetwork/elrond-proxy:v1.1.27 -f ./elrond-proxy
+docker image build . -t multiversx/multiversx-node-obs:v1.3.50.1 -f ./multiversx-node-obs
+docker image build . -t multiversx/multiversx-proxy:v1.1.27 -f ./multiversx-proxy
 ```
 
 ```bash
 cd utils
-docker image build . -t elrondnetwork/elrond-go-keygenerator:latest -f ./elrond-go-keygenerator
+docker image build . -t multiversx/multiversx-node-keygenerator:latest -f ./multiversx-node-keygenerator
 ```
 
 ## How to pull the images from Docker Hub
 
 ```bash
-docker pull elrondnetwork/elrond-node-obs:v1.3.50.1
-docker pull elrondnetwork/elrond-proxy:v1.1.27
-docker pull elrondnetwork/elrond-go-keygenerator:latest
+docker pull multiversx/multiversx-node-obs:v1.3.50.1
+docker pull multiversx/multiversx-proxy:v1.1.27
+docker pull multiversx/multiversx-node-keygenerator:latest
 ```
 
 ## How to setup the Docker-based Observing Squad
@@ -33,7 +33,7 @@ First, generate 4 PEM files, one for each Observer by running the keygenerator 4
 
 ```bash
 export KEYS_FOLDER=~/keys
-docker run --rm --mount type=bind,source=${KEYS_FOLDER},destination=/keys --workdir /keys elrondnetwork/elrond-go-keygenerator:latest
+docker run --rm --mount type=bind,source=${KEYS_FOLDER},destination=/keys --workdir /keys multiversx/multiversx-node-keygenerator:latest
 ```
 
 After running the command 4 times, rename the resulted files to:
@@ -83,7 +83,7 @@ In a folder of your choice (e.g. `MyObservingSquad`), create the following struc
 ### Create a docker network
 
 ```bash
-docker network create --subnet=10.0.0.0/24 elrond-squad
+docker network create --subnet=10.0.0.0/24 multiversx-squad
 ```
 
 ### Clone repository
@@ -91,7 +91,7 @@ docker network create --subnet=10.0.0.0/24 elrond-squad
 Clone this repository in order to get a copy of the files `run-observer.sh` and `run-proxy.sh`, which are needed below.
 
 ```bash
-git clone https://github.com/ElrondNetwork/observing-squad.git && cd observing-squad
+git clone https://github.com/multiversx/observing-squad.git && cd observing-squad
 ```
 
 ### Start Observers 0, 1, 2, Metachain
@@ -151,8 +151,8 @@ export IP=10.0.0.2
 
 1. Pull the new images:
 ```
-docker pull elrondnetwork/elrond-node-obs:v1.3.50.1
-docker pull elrondnetwork/elrond-proxy:v1.1.27
+docker pull multiversx/multiversx-node-obs:v1.3.50.1
+docker pull multiversx/multiversx-proxy:v1.1.27
 ```
 2. Get the latest version of this repository.
 ```
@@ -163,7 +163,7 @@ git pull origin
 4. Optionally, remove the old Docker images (not needed anymore).
 5. Remove the existing Docker network: 
 ```
-docker network rm elrond-squad
+docker network rm multiversx-squad
 ```
 6. [Create a Docker network](#create-a-docker-network)
 7. [Start Observers 0, 1, 2, Metachain](#start-observers-0-1-2-metachain). Make sure you set `OBSERVER_DIR` environment variables accordingly, **in advance, with respect to your current setup**.
@@ -173,7 +173,7 @@ docker network rm elrond-squad
 
 ### Verify the running containers
 
-Do a smoke test by running some queries against the Elrond Proxy.
+Do a smoke test by running some queries against the MultiversX Proxy.
 
 ```bash
 PROXY=http://10.0.0.2:8079

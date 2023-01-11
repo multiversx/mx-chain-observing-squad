@@ -1,2 +1,2 @@
 #!/bin/bash
- docker run --network=elrond-squad --ip=${IP} --name proxy elrondnetwork/elrond-proxy:v1.1.27
+ docker run --network=multiversx-squad --ip=${IP} --name proxy multiversx/multiversx-proxy:v1.1.27
