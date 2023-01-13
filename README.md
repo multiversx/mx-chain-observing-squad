@@ -8,21 +8,21 @@ Skip this if you prefer to pull from [docker hub](https://hub.docker.com/u/multi
 
 ```bash
 cd mainnet
-docker image build . -t multiversx/multiversx-node-obs:v1.3.50.3 -f ./multiversx-node-obs
-docker image build . -t multiversx/multiversx-proxy:v1.1.27 -f ./multiversx-proxy
+docker image build . -t multiversx/chain-obs:v1.3.50.3 -f ./chain-obs
+docker image build . -t multiversx/chain-squad-proxy:v1.1.27 -f ./chain-proxy
 ```
 
 ```bash
 cd utils
-docker image build . -t multiversx/multiversx-node-keygenerator:latest -f ./multiversx-node-keygenerator
+docker image build . -t multiversx/chain-keygenerator:latest -f ./chain-keygenerator
 ```
 
 ## How to pull the images from Docker Hub
 
 ```bash
-docker pull multiversx/multiversx-node-obs:v1.3.50.3
-docker pull multiversx/multiversx-proxy:v1.1.27
-docker pull multiversx/multiversx-node-keygenerator:latest
+docker pull multiversx/chain-obs:v1.3.50.3
+docker pull multiversx/chain-squad-proxy:v1.1.27
+docker pull multiversx/chain-keygenerator:latest
 ```
 
 ## How to setup the Docker-based Observing Squad
@@ -33,7 +33,7 @@ First, generate 4 PEM files, one for each Observer by running the keygenerator 4
 
 ```bash
 export KEYS_FOLDER=~/keys
-docker run --rm --mount type=bind,source=${KEYS_FOLDER},destination=/keys --workdir /keys multiversx/multiversx-node-keygenerator:latest
+docker run --rm --mount type=bind,source=${KEYS_FOLDER},destination=/keys --workdir /keys multiversx/chain-keygenerator:latest
 ```
 
 After running the command 4 times, rename the resulted files to:

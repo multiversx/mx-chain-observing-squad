@@ -1,2 +1,2 @@
 #!/bin/bash
- docker run --network=multiversx-squad --ip=${IP} --name proxy multiversx/multiversx-proxy:v1.1.27
+ docker run --network=multiversx-squad --ip=${IP} --name proxy multiversx/chain-squad-proxy:v1.1.27
