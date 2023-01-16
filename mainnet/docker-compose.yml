@@ -2,7 +2,7 @@ version: '3'
 
 services:
  observer-0:
-   image: ${ORGANIZATION}/${NODE_TAG}
+   image: ${ORGANIZATION}/${OBSERVER_IMAGE}
    ports:
      - "8080:8080"
      - "10000:37373"
@@ -18,7 +18,7 @@ services:
        ipv4_address: 10.0.0.6
 
  observer-1:
-   image: ${ORGANIZATION}/${NODE_TAG}
+   image: ${ORGANIZATION}/${OBSERVER_IMAGE}
    ports:
      - "8081:8080"
      - "10001:37373"
@@ -33,7 +33,7 @@ services:
      multiversx-squad:
        ipv4_address: 10.0.0.5
  observer-2:
-   image: ${ORGANIZATION}/${NODE_TAG}
+   image: ${ORGANIZATION}/${OBSERVER_IMAGE}
    ports:
     - "8082:8080" 
     - "10002:37373"
@@ -49,7 +49,7 @@ services:
        ipv4_address: 10.0.0.4
 
  observer-meta:
-   image: ${ORGANIZATION}/${NODE_TAG}
+   image: ${ORGANIZATION}/${OBSERVER_IMAGE}
    ports:
      - "8083:8080"
      - "10003:37373"
@@ -65,7 +65,7 @@ services:
        ipv4_address: 10.0.0.3
 
  proxy:
-   image: ${ORGANIZATION}/${PROXY_TAG}
+   image: ${ORGANIZATION}/${PROXY_IMAGE}
    ports:
      - "8079:8079"
    environment:

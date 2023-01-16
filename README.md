@@ -8,8 +8,8 @@ Skip this if you prefer to pull from [docker hub](https://hub.docker.com/u/multi
 
 ```bash
 cd mainnet
-docker image build . -t multiversx/chain-obs:v1.3.50.3 -f ./chain-obs
-docker image build . -t multiversx/chain-squad-proxy:v1.1.27 -f ./chain-proxy
+docker image build . -t multiversx/chain-observer:v1.3.50.3 -f ./chain-observer
+docker image build . -t multiversx/chain-squad-proxy:v1.1.27-rc1 -f ./chain-proxy
 ```
 
 ```bash
@@ -20,8 +20,8 @@ docker image build . -t multiversx/chain-keygenerator:latest -f ./chain-keygener
 ## How to pull the images from Docker Hub
 
 ```bash
-docker pull multiversx/chain-obs:v1.3.50.3
-docker pull multiversx/chain-squad-proxy:v1.1.27
+docker pull multiversx/chain-observer:v1.3.50.3
+docker pull multiversx/chain-squad-proxy:v1.1.27-rc1
 docker pull multiversx/chain-keygenerator:latest
 ```
 
