@@ -151,8 +151,8 @@ export IP=10.0.0.2
 
 1. Pull the new images:
 ```
-docker pull multiversx/multiversx-node-obs:v1.3.50.3
-docker pull multiversx/multiversx-proxy:v1.1.27
+docker pull multiversx/chain-observer:v1.3.50.3
+docker pull multiversx/chain-squad-proxy:v1.1.27-rc1
 ```
 2. Get the latest version of this repository.
 ```
