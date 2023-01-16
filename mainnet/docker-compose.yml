@@ -2,80 +2,80 @@ version: '3'
 
 services:
  observer-0:
-   image: elrondnetwork/${NODE_TAG}
+   image: ${ORGANIZATION}/${OBSERVER_IMAGE}
    ports:
      - "8080:8080"
      - "10000:37373"
    environment:
      - SHARD=0
    volumes:
-     - ~/MyObservingSquad/node-0/db:/go/elrond-go/cmd/node/db
-     - ~/MyObservingSquad/node-0/logs:/go/elrond-go/cmd/node/logs
-     - ~/MyObservingSquad/node-0/config:/config
+     - ${SQUAD_DIRECTORY}/node-0/db:/go/mx-chain-go/cmd/node/db
+     - ${SQUAD_DIRECTORY}/node-0/logs:/go/mx-chain-go/cmd/node/logs
+     - ${SQUAD_DIRECTORY}/node-0/config:/config
    command: --destination-shard-as-observer=${SHARD_0} --validator-key-pem-file=/config/observerKey_${SHARD_0}.pem --display-name="${DISPLAY_NAME_0}"
    networks:
-     elrond-squad:
+     multiversx-squad:
        ipv4_address: 10.0.0.6
 
  observer-1:
-   image: elrondnetwork/${NODE_TAG}
+   image: ${ORGANIZATION}/${OBSERVER_IMAGE}
    ports:
      - "8081:8080"
      - "10001:37373"
    environment:
      - SHARD=1 
    volumes:
-     - ~/MyObservingSquad/node-1/db:/go/elrond-go/cmd/node/db
-     - ~/MyObservingSquad/node-1/logs:/go/elrond-go/cmd/node/logs
-     - ~/MyObservingSquad/node-1/config:/config
+     - ${SQUAD_DIRECTORY}/node-1/db:/go/mx-chain-go/cmd/node/db
+     - ${SQUAD_DIRECTORY}/node-1/logs:/go/mx-chain-go/cmd/node/logs
+     - ${SQUAD_DIRECTORY}/node-1/config:/config
    command: --destination-shard-as-observer=${SHARD_1} --validator-key-pem-file=/config/observerKey_${SHARD_1}.pem --display-name="${DISPLAY_NAME_1}"
    networks:
-     elrond-squad:
+     multiversx-squad:
        ipv4_address: 10.0.0.5
  observer-2:
-   image: elrondnetwork/${NODE_TAG}
+   image: ${ORGANIZATION}/${OBSERVER_IMAGE}
    ports:
     - "8082:8080" 
     - "10002:37373"
    environment:
      - SHARD=2
    volumes:
-     - ~/MyObservingSquad/node-2/db:/go/elrond-go/cmd/node/db
-     - ~/MyObservingSquad/node-2/logs:/go/elrond-go/cmd/node/logs
-     - ~/MyObservingSquad/node-2/config:/config
+     - ${SQUAD_DIRECTORY}/node-2/db:/go/mx-chain-go/cmd/node/db
+     - ${SQUAD_DIRECTORY}/node-2/logs:/go/mx-chain-go/cmd/node/logs
+     - ${SQUAD_DIRECTORY}/node-2/config:/config
    command: --destination-shard-as-observer=${SHARD_2} --validator-key-pem-file=/config/observerKey_${SHARD_2}.pem --display-name="${DISPLAY_NAME_2}"
    networks:
-     elrond-squad:
+     multiversx-squad:
        ipv4_address: 10.0.0.4
 
  observer-meta:
-   image: elrondnetwork/${NODE_TAG}
+   image: ${ORGANIZATION}/${OBSERVER_IMAGE}
    ports:
      - "8083:8080"
      - "10003:37373"
    environment:
      - SHARD=metachain
    volumes:
-     - ~/MyObservingSquad/node-metachain/db:/go/elrond-go/cmd/node/db
-     - ~/MyObservingSquad/node-metachain/logs:/go/elrond-go/cmd/node/logs
-     - ~/MyObservingSquad/node-metachain/config:/config
+     - ${SQUAD_DIRECTORY}/node-metachain/db:/go/mx-chain-go/cmd/node/db
+     - ${SQUAD_DIRECTORY}/node-metachain/logs:/go/mx-chain-go/cmd/node/logs
+     - ${SQUAD_DIRECTORY}/node-metachain/config:/config
    command: --destination-shard-as-observer=${SHARD_M} --validator-key-pem-file=/config/observerKey_${SHARD_M}.pem --display-name="${DISPLAY_NAME_M}"
    networks:
-     elrond-squad:
+     multiversx-squad:
        ipv4_address: 10.0.0.3
 
  proxy:
-   image: elrondnetwork/${PROXY_TAG}
+   image: ${ORGANIZATION}/${PROXY_IMAGE}
    ports:
      - "8079:8079"
    environment:
      - IP=10.0.0.2
    networks:
-     elrond-squad:
+     multiversx-squad:
        ipv4_address: 10.0.0.2
 
 networks:
-  elrond-squad:
+  multiversx-squad:
     ipam:
       config:
         - subnet: 10.0.0.0/24

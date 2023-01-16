@@ -21,7 +21,7 @@ mkdir -p ${KEYS_FOLDER}
 for OBSERVER in "${NODES[@]}"
 do
    echo -e "${GREEN}--> Generating key for observer ${CYAN}$OBSERVER${GREEN}...${NC}"
-   docker run --rm --mount type=bind,source=${KEYS_FOLDER},destination=/keys --workdir /keys elrondnetwork/elrond-go-keygenerator:latest && sudo chown $(whoami) ${KEYS_FOLDER}/validatorKey.pem && mv ${KEYS_FOLDER}/validatorKey.pem ${STACK_FOLDER}/node-$OBSERVER/config/observerKey_$OBSERVER.pem
+   docker run --rm --mount type=bind,source=${KEYS_FOLDER},destination=/keys --workdir /keys multiversx/chain-keygenerator:latest && sudo chown $(whoami) ${KEYS_FOLDER}/validatorKey.pem && mv ${KEYS_FOLDER}/validatorKey.pem ${STACK_FOLDER}/node-$OBSERVER/config/observerKey_$OBSERVER.pem
 done
 
 #Start the stack

@@ -1,0 +1,15 @@
+FROM golang:1.17.6 as builder
+
+RUN git clone https://github.com/multiversx/mx-chain-go.git
+
+#Build keygenerator
+WORKDIR /go/mx-chain-go/
+
+WORKDIR /go/mx-chain-go/cmd/keygenerator
+RUN go build
+
+# ===== SECOND STAGE ======
+FROM ubuntu:20.04
+COPY --from=builder /go/mx-chain-go/cmd/keygenerator /go/mx-chain-go/cmd/keygenerator
+
+ENTRYPOINT ["/go/mx-chain-go/cmd/keygenerator/keygenerator"]
