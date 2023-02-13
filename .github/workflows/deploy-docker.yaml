@@ -33,7 +33,7 @@ jobs:
           cd ${GITHUB_WORKSPACE}/mainnet/ && docker image build . -t "${REGISTRY_HOSTNAME}/${OBSERVER_IMAGE}" -f ./chain-observer
       - name: Build proxy image
         run: |
-          cd ${GITHUB_WORKSPACE}/mainnet/ && docker image build . -t "${REGISTRY_HOSTNAME}/${PROXY_IMAGE}" -f ./chain-squad-proxy
+          cd ${GITHUB_WORKSPACE}/mainnet/ && docker image build . -t "${REGISTRY_HOSTNAME}/${PROXY_IMAGE}" -f ./chain-proxy
       - name: Push images
         run: |
           docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
