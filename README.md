@@ -202,10 +202,10 @@ curl ${PROXY}/transaction/${TRANSACTION_HASH} | jq '.data["transaction"]["hyperb
 ### Check versions of running Nodes (containers)
 
 ```
-curl 10.0.0.6:8080/node/status | jq '.data["metrics"]["erd_latest_tag_software_version"]'
-curl 10.0.0.5:8080/node/status | jq '.data["metrics"]["erd_latest_tag_software_version"]'
-curl 10.0.0.4:8080/node/status | jq '.data["metrics"]["erd_latest_tag_software_version"]'
-curl 10.0.0.3:8080/node/status | jq '.data["metrics"]["erd_latest_tag_software_version"]'
+curl 10.0.0.6:8080/node/status | jq '.data["metrics"]["erd_app_version"]'
+curl 10.0.0.5:8080/node/status | jq '.data["metrics"]["erd_app_version"]'
+curl 10.0.0.4:8080/node/status | jq '.data["metrics"]["erd_app_version"]'
+curl 10.0.0.3:8080/node/status | jq '.data["metrics"]["erd_app_version"]'
 ```
 
 ### Check public keys of Observers
