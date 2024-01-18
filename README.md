@@ -152,7 +152,7 @@ export IP=10.0.0.2
 1. Pull the new images:
 ```
 docker pull multiversx/chain-observer:v1.6.13.0
-docker pull multiversx/chain-squad-proxy:v1.1.39
+docker pull multiversx/chain-squad-proxy:v1.1.43
 ```
 2. Get the latest version of this repository.
 ```
