@@ -6,6 +6,7 @@ services:
    ports:
      - "8080:8080"
      - "10000:37373"
+   platform: linux/amd64
    environment:
      - SHARD=0
    volumes:
