@@ -1,4 +1,4 @@
-FROM multiversx/chain-proxy:v1.1.48
+FROM multiversx/chain-proxy:v1.1.49
 
 COPY configs/config.toml /mx-chain-proxy-go/cmd/proxy/config/
 
