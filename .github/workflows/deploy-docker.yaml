@@ -37,7 +37,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push node image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ./mainnet
           file: ./mainnet/chain-observer
@@ -47,7 +47,7 @@ jobs:
             ${{ env.REGISTRY_HOSTNAME }}/${{ env.OBSERVER_IMAGE }}
 
       - name: Build and push proxy image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ./mainnet
           file: ./mainnet/chain-proxy
