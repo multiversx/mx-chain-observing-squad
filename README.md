@@ -91,7 +91,7 @@ docker network create --subnet=10.0.0.0/24 multiversx-squad
 Clone this repository in order to get a copy of the files `run-observer.sh` and `run-proxy.sh`, which are needed below.
 
 ```bash
-git clone https://github.com/multiversx/observing-squad.git && cd observing-squad
+git clone https://github.com/multiversx/mx-chain-observing-squad.git && cd mx-chain-observing-squad
 ```
 
 ### Start Observers 0, 1, 2, Metachain
@@ -156,7 +156,7 @@ docker pull multiversx/chain-squad-proxy:v1.1.49
 ```
 2. Get the latest version of this repository.
 ```
-cd observing-squad
+cd mx-chain-observing-squad
 git pull origin
 ```
 3. Stop the 5 containers (Proxy and Observers).
