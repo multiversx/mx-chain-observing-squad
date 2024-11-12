@@ -8,8 +8,8 @@ Skip this if you prefer to pull from [docker hub](https://hub.docker.com/u/multi
 
 ```bash
 cd mainnet
-docker image build . -t multiversx/chain-observer:v1.7.13.1-patch2 -f ./chain-observer
-docker image build . -t multiversx/chain-squad-proxy:v1.1.49 -f ./chain-proxy
+docker image build . -t multiversx/chain-observer:v1.8.4.0 -f ./chain-observer
+docker image build . -t multiversx/chain-squad-proxy:v1.1.54 -f ./chain-proxy
 ```
 
 ```bash
@@ -20,8 +20,8 @@ docker image build . -t multiversx/chain-keygenerator:latest -f ./chain-keygener
 ## How to pull the images from Docker Hub
 
 ```bash
-docker pull multiversx/chain-observer:v1.7.13.1-patch2
-docker pull multiversx/chain-squad-proxy:v1.1.49
+docker pull multiversx/chain-observer:v1.8.4.0
+docker pull multiversx/chain-squad-proxy:v1.1.54
 docker pull multiversx/chain-keygenerator:latest
 ```
 
@@ -151,8 +151,8 @@ export IP=10.0.0.2
 
 1. Pull the new images:
 ```
-docker pull multiversx/chain-observer:v1.7.13.1-patch2
-docker pull multiversx/chain-squad-proxy:v1.1.49
+docker pull multiversx/chain-observer:v1.8.4.0
+docker pull multiversx/chain-squad-proxy:v1.1.54
 ```
 2. Get the latest version of this repository.
 ```
