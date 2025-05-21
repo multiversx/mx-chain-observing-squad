@@ -1,7 +1,8 @@
-FROM multiversx/chain-mainnet:v1.8.13.0
+FROM multiversx/chain-mainnet:v1.9.6.0
 
 #Enable "Database Lookup Extensions"
 WORKDIR /go/mx-chain-go/cmd/node/
+RUN sed -i 's/^\(\s*StartInEpochEnabled\s*=\s*\)true/\1false/' ./config/config.toml
 RUN sed -i '/\[DbLookupExtensions\]/!b;n;c\\tEnabled = true' ./config/config.toml
 
 EXPOSE 8080
