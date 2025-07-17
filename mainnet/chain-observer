@@ -1,4 +1,4 @@
-FROM multiversx/chain-mainnet:v1.9.6.0
+FROM multiversx/chain-mainnet:v1.10.4.0
 
 #Enable "Database Lookup Extensions"
 WORKDIR /go/mx-chain-go/cmd/node/
